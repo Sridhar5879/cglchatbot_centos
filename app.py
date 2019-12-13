@@ -99,12 +99,7 @@ dfa1=[w for w in dfa]
 from flask import Flask, render_template, request, json, jsonify, make_response
 import requests
 import pdb
-app = Flask(__name__,static_folder='xlsx')
-
-
-@app.route('/xlsx/<path:filename>', methods=['GET', 'POST'])
-def download(filename):
-    return send_from_directory(directory='xlsx', filename=filename)
+app = Flask(__name__)
 
 
 @app.route('/', methods=['GET','POST'])
@@ -129,11 +124,11 @@ def order_status():
           names = list(Retailer['Name'])
           name =names[0]
           if userid == 181800:
-              result = 'Hi %s - India Sales, Welcome to Crompton. Please select a report from the following <a href = \'https://github.com/Sridhar5879/chatbot_dev/blob/master/EnterpriseDashboard.ppsm\'>Enterprise Dashboard </a> <a href=/xlsx/SalesReportGH.xlsx target=\'_blank\'>IndiaSalesReport </a> <a href=/xlsx/SalesReportNI.xlsx target=\'_blank\'>NorthIndiaSalesReport </a> <a href=/xlsx/SalesReportSI.xlsx target=\'_blank\'>SouthIndiaSalesReport </a> <a href=/xlsx/SalesReportMH.xlsx target=\'_blank\'>MaharashtraSalesReport </a> <a href=/xlsx/SalesReportTG.xlsx target=\'_blank\'>TelanganaSalesReport</a> ' % name
+              result = "Hi %s - India Sales, Welcome to Crompton. Please select a report from the following <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/EnterpriseDashboard.ppsm?raw=true'>Enterprise Dashboard </a> <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/SalesReportGH.xlsx?raw=true'>IndiaSalesReport </a> <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report NI.xlsx?raw=true'>NorthIndiaSalesReport</a> <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report SI.xlsx?raw=true'>SouthIndiaSalesReport</a> <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report MH.xlsx?raw=true'>MaharastraSalesReport</a> <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report TG.xlsx?raw=true'>TelanganaSalesReport</a> "%name
           elif userid == 454500:
-              result = 'Hi %s - South India Sales, Welcome to Crompton. Please select a report from the following <a href = \'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report SI.xlsx?raw=true\'>SouthIndiaSalesReport</a> <a href = \'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report TG.xlsx?raw=true\'>TelanganaSalesReport</a> ' % name
+              result = "Hi %s - South India Sales, Welcome to Crompton. Please select a report from the following <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report SI.xlsx?raw=true'>SouthIndiaSalesReport</a> <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report TG.xlsx?raw=true'>TelanganaSalesReport</a> "%name
           elif userid == 322300:
-              result = 'Hi %s - North India Sales, Welcome to Crompton. Please select a report from the following <a href = \'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report NI.xlsx?raw=true\'>NorthIndiaSalesReport</a> ' % name
+              result = "Hi %s - North India Sales, Welcome to Crompton. Please select a report from the following <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report NI.xlsx?raw=true'>NorthIndiaSalesReport</a> "%name
           elif userid == 349000:
               result = "Hi %s - Maharastra Sales, Welcome to Crompton. Please select a report from the following <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report MH.xlsx?raw=true'>MaharastraSalesReport</a> <a href = 'https://github.com/Sridhar5879/chatbot_dev/blob/master/Sales report Mum.xlsx?raw=true'>MumbaiSalesReport</a> "%name
           else:
@@ -177,4 +172,4 @@ def order_status():
       return render_template('chat.html')
 
 if __name__ == "__main__":
-  app.run(host='172.16.29.123')
+  app.run(host='127.0.0.1')
